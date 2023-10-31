@@ -15,7 +15,6 @@ _filename="${_pkgname}-${pkgver}.appimage"
 url="https://github.com/biglinux/$pkgname"
 source=("git+${url}.git")
 md5sums=('SKIP')
-options=(!strip)
 if [ -e "${pkgname}.install" ];then
     install=${pkgname}.install
 elif [ -e "pkgbuild.install" ];then
@@ -24,6 +23,7 @@ fi
 
 prepare() {
   cd ${srcdir}
+  unset SOURCE_DATE_EPOCH
   ARCH=$(uname -m) appimagetool ${srcdir}/${pkgname}/${_pkgname}.AppDir $_filename
 }
 
