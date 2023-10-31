@@ -15,6 +15,7 @@ _filename="${_pkgname}-${pkgver}.appimage"
 url="https://github.com/biglinux/$pkgname"
 source=("git+${url}.git")
 md5sums=('SKIP')
+options=(!strip)
 if [ -e "${pkgname}.install" ];then
     install=${pkgname}.install
 elif [ -e "pkgbuild.install" ];then
