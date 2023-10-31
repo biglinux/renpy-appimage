@@ -23,7 +23,7 @@ fi
 
 prepare() {
   cd ${srcdir}
-  sudo ARCH=$(uname -m) appimagetool ${srcdir}/${pkgname}/${_pkgname}.AppDir $_filename
+  ARCH=$(uname -m) appimagetool ${srcdir}/${pkgname}/${_pkgname}.AppDir $_filename
 }
 
 package() {
