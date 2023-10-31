@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Ren'Py
+GenericName=renpy
+Comment=Crie visual novels
+Icon=renpy
+Exec=AppRun
+Terminal=false
+Categories=Game;AdventureGame;
+Keywords=visual;novel;japanese;development;
