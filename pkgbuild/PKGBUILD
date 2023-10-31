@@ -23,7 +23,7 @@ fi
 
 prepare() {
   cd ${srcdir}
-  ARCH=$(uname -m) ./appimagetool.AppImage ${srcdir}/${pkgname}.AppDir $_filename
+  ARCH=$(uname -m) appimagetool ${srcdir}/${pkgname}.AppDir $_filename
 }
 
 package() {
