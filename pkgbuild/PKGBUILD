@@ -11,7 +11,7 @@ provides=('renpy')
 conflicts=('renpy' 'renpy-git')
 # depends=('')
 makedepends=('appimagetool' 'desktop-file-utils')
-_filename="${_pkgname}-${pkgver}.AppImage"
+_filename="${_pkgname}-${pkgver}.appimage"
 url="https://github.com/biglinux/$pkgname"
 source=("git+${url}.git")
 md5sums=('SKIP')
@@ -23,7 +23,7 @@ fi
 
 prepare() {
   cd ${srcdir}
-  ARCH=$(uname -m) appimagetool ${srcdir}/${pkgname}.AppDir $_filename
+  sudo ARCH=$(uname -m) appimagetool ${srcdir}/${pkgname}/${_pkgname}.AppDir $_filename
 }
 
 package() {
