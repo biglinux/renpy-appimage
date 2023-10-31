@@ -15,6 +15,7 @@ _filename="${_pkgname}-${pkgver}.appimage"
 url="https://github.com/biglinux/$pkgname"
 source=("git+${url}.git")
 md5sums=('SKIP')
+options=(!strip)
 if [ -e "${pkgname}.install" ];then
     install=${pkgname}.install
 elif [ -e "pkgbuild.install" ];then
@@ -22,13 +23,18 @@ elif [ -e "pkgbuild.install" ];then
 fi
 
 prepare() {
-  cd ${srcdir}
+  cd ${srcdir}/${pkgname}
+  install -dm755 opt/appimages/
   unset SOURCE_DATE_EPOCH
-  ARCH=$(uname -m) appimagetool ${srcdir}/${pkgname}/${_pkgname}.AppDir $_filename
+  ARCH=$(uname -m) appimagetool "${srcdir}/${pkgname}/${_pkgname}.AppDir" "opt/appimages/$_filename"
 }
 
 package() {
+  ExecScript="#!/bin/sh\nexec /opt/appimages/${_filename} \"\$@\""
+  install -dm755 "${pkgdir}/usr/bin"
+  echo -e $ExecScript > "${pkgdir}/usr/bin/${_pkgname}"
+  
   cp -r "${srcdir}/${pkgname}/usr" "${pkgdir}/"
-  mkdir -p ${pkgdir}/opt/appimages/
-  mv ${srcdir}/${_filename} ${pkgdir}/opt/appimages/
+  cp -r "${srcdir}/${pkgname}/opt" "${pkgdir}/"
 }
+ 
