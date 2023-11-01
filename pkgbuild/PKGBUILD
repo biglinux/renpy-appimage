@@ -33,7 +33,8 @@ package() {
   ExecScript="#!/bin/sh\nexec /opt/appimages/${_filename} \"\$@\""
   install -dm755 "${pkgdir}/usr/bin"
   echo -e $ExecScript > "${pkgdir}/usr/bin/${_pkgname}"
-  
+  chmod +x "${pkgdir}/usr/bin/${_pkgname}"
+
   cp -r "${srcdir}/${pkgname}/usr" "${pkgdir}/"
   cp -r "${srcdir}/${pkgname}/opt" "${pkgdir}/"
 }
